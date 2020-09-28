@@ -1,33 +1,72 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
+  const quotes = [
+    {
+      quote: "First, solve the problem. Then, write the code.",
+      source: "John Johnson",
+      category: "Programming"
+    },
+    {
+      quote: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code.",
+      source: "Christopher Thompson",
+      year: 2017,
+      citation: "twitter.com"
+    },
+    {
+      quote: "One man’s crappy software is another man’s full time job.",
+      source: "Jessica Gaston"
+    },
+    {
+      quote: "If at first you don't succeed, call it version 1.0.",
+      source: "Charles Lauller",
+      year: 2020,
+      citation: "quotes.net"
+    },
+    {
+      quote: "Those who don't believe in magic will never find it.",
+      source: "Roald Dahl",
+      year: 2018,
+      citation: "roalddahl.com",
+      category: "Life"
+    }
+  ]
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
+  const getRandomQuote = () => {
+    const randomQuote = Math.floor(Math.random() * quotes.length);
+    const quote = quotes[randomQuote];
+    return quote;
+  }
 
-/*** 
- * `quotes` array 
-***/
+  const printQuote = () => {
+    const quote = getRandomQuote();
+    const quoteBox = document.querySelector('#quote-box');
+    let html = `<p class="quote">${quote.quote}</p><p class="source">${quote.source}`;
 
+    if ( quote.category ) {
+      html += `<span class="category">${quote.category}</span>`;
+    } if ( quote.citation ) {
+      html += `<span class="citation">${quote.citation}</span>`;
+    } if ( quote.year ) {
+      html += `<span class="year">${quote.year}</span>`;
+    }
 
+    html += `</p>`;
+    console.log(html);
+    randomBg();
+    return quoteBox.innerHTML = html;
+  }
 
-/***
- * `getRandomQuote` function
-***/
+  function randomBg() {
+    const red = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+    const body = document.querySelector('body');
+    body.style.backgroundColor = `rgb(${red},${green},${blue})`;
+  }
 
+  const timer = () => {
+    printQuote();
+    randomBg();
+  }
 
+  setInterval(timer, 10000);
 
-/***
- * `printQuote` function
-***/
-
-
-
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
-
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+  document.getElementById('load-quote').addEventListener("click", printQuote, false);
