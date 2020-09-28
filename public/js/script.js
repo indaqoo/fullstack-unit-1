@@ -1,3 +1,8 @@
+//
+// https://github.com/indaqoo
+// live preview - https://indaqoo.github.io/fullstack-unit-1/
+//
+
   const quotes = [
     {
       quote: "First, solve the problem. Then, write the code.",
@@ -25,14 +30,13 @@
     }
   ]
 
-  const getRandomQuote = () => {
-    const randomQuote = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomQuote];
-    return quote;
+  const getRandomQuote = (arr) => {
+    const randomQuote = Math.floor(Math.random() * arr.length);
+    return arr[randomQuote];
   }
 
   const printQuote = () => {
-    const quote = getRandomQuote();
+    const quote = getRandomQuote(quotes);
     const quoteBox = document.querySelector('#quote-box');
     let html = `<p class="quote">${quote.quote}</p><p class="source">${quote.source}`;
 
