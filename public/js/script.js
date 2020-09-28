@@ -47,9 +47,7 @@
     } if ( quote.year ) {
       html += `<span class="year">${quote.year}</span>`;
     }
-
     html += `</p>`;
-    console.log(html);
     randomBg();
     return quoteBox.innerHTML = html;
   }
